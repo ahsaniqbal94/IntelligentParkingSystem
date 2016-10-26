@@ -128,8 +128,6 @@ $(document).ready(function() {
 		formdata.append("cnic", inpEditCnic);
 		formdata.append("rollNumber", inpEditRollNumber);
 		
-
-		alert(inpEditCnic);
 		
 		
 		alert("sending POST ajax");

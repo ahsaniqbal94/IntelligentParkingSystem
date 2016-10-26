@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.NullValueInNestedPathException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.index.Index;
 import org.springframework.data.mongodb.core.index.Index.Duplicates;
@@ -296,6 +298,51 @@ public class AccountController {
 			
 		}
 
+		
+		@RequestMapping(value="/getaccountbyname",method=RequestMethod.GET)
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
+		public Map<String, Object> getAllAccountsbyname(@RequestParam("studentName") String studentName){
+			
+			Query query=new Query();
+			query.addCriteria(Criteria.where("studentName").regex( studentName,"i"));
+			query.with(new Sort(Sort.Direction.ASC,"studentName"));
+			query.fields().include("studentName");
+			query.fields().include("department");
+			query.fields().include("rollNumber");
+			query.fields().include("batch");
+			query.fields().include("studentId");
+			
+			List<Account> allAccounts=mongoTemplate.find(query, Account.class,"account");
+
+			Map<String, Object> response= new LinkedHashMap<String, Object>();
+			
+			response.put("TotalAccounts", allAccounts.size());
+			response.put("Accounts", allAccounts);
+			return response;
+		}
+		
+		@RequestMapping(value="/getaccountbyid",method=RequestMethod.GET)
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
+		public Map<String, Object> getAllAccountsbyId(@RequestParam("studentId") String studentId){
+			
+			Query query=new Query();
+			query.addCriteria(Criteria.where("studentId").is( studentId));
+			query.with(new Sort(Sort.Direction.ASC,"studentName"));
+			query.fields().include("studentName");
+			query.fields().include("department");
+			query.fields().include("rollNumber");
+			query.fields().include("batch");
+			query.fields().include("studentId");
+			
+			List<Account> allAccounts=mongoTemplate.find(query, Account.class,"account");
+
+			Map<String, Object> response= new LinkedHashMap<String, Object>();
+			
+			response.put("TotalAccounts", allAccounts.size());
+			response.put("Accounts", allAccounts);
+			return response;
+		}
+		
 	@RequestMapping(value="/getallaccount",method=RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Map<String, Object> getAllAccounts(HttpServletRequest request){
@@ -313,11 +360,17 @@ public class AccountController {
 		
 		Query query=new Query();
 		
+		query.fields().include("studentName");
+		query.fields().include("department");
+		query.fields().include("rollNumber");
+		query.fields().include("batch");
+		query.fields().include("studentId");
+		
 		List<Account> allAccounts=mongoTemplate.find(query, Account.class,"account");
 
 		Map<String, Object> response= new LinkedHashMap<String, Object>();
 		
-		response.put("Total Accounts", allAccounts.size());
+		response.put("TotalAccounts", allAccounts.size());
 		response.put("Accounts", allAccounts);
 		return response;
 	}
@@ -325,13 +378,11 @@ public class AccountController {
 	
 	@RequestMapping(value="/getaccountinformation", method=RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public @ResponseBody Map<String, Object> getAccountInformation(@RequestParam("studentid") String studentId,
-			@RequestParam("batch") String batch,
-			@RequestParam("rfid") String rfid){
+	public @ResponseBody Map<String, Object> getAccountInformation(@RequestParam("studentid") String studentId){
 		
 		
 		
-		Query query1=new Query(Criteria.where("batch").is(batch).and("studentId").is(studentId));
+		Query query1=new Query(Criteria.where("studentId").is(studentId));
 
 		// find with batch and studentID
 		
@@ -342,25 +393,16 @@ public class AccountController {
 		
 		Map<String, Object> response= new LinkedHashMap<String, Object>();
 		
-		//find with rfid
-		Query query2=new Query(Criteria.where("rfid").is(rfid));
 
-		List<Account> foundAccounts2=mongoTemplate.find(query2, Account.class,"account");
 		
-		if(!(foundAccounts2.get(0).equals(foundAccounts1.get(0)))){
-			logger.error("accounts not equal");
-		}else{
-			logger.info("accounts are equal ^-^");
-		}
 		
-		response.put("Total_Accounts", foundAccounts1.size());
+		response.put("TotalAccounts", foundAccounts1.size());
 		response.put("Accounts", foundAccounts1);
 		
 		return response;
 		
 		}
 		
-		logger.error("Account not found against : " + rfid);
 		return null;
 		
 	}

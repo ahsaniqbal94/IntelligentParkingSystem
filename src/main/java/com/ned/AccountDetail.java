@@ -9,5 +9,6 @@ public interface AccountDetail {
 	String getActiveAccount();
 	String getStudentId();
 	String getBatch();
+	String getrfid();
 	
 }
