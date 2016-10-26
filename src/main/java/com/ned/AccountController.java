@@ -82,10 +82,7 @@ public class AccountController {
 					
 				logger.info("pushing the rfid " + rfid + " into the database");
 				
-//				Account account=new Account(studentName, studentId, activeAccount,
-//						department, batch, bytes, rfid, 
-//						frontImageContentType,sex,vehicleType,vehicleNumber);
-				
+
 				Account account=new Account(studentName, accountType, studentId, activeAccount,
 						department, rollNumber, batch, bytes, rfid, frontImageContentType, sex,
 						vehicleType, vehicleNumber, cnicNo);
@@ -101,8 +98,7 @@ public class AccountController {
 				
 				}catch(DuplicateKeyException e){
 					Map<String, Object> responseMap=new LinkedHashMap<String, Object>();
-					responseMap.put("message","Account already exist " + "=> with rfid studentid"
-					+ " and batch : " + rfid + " " + studentId + " " + batch);
+					responseMap.put("message","Account already exists with RFID:"+ rfid +" or Enrollment No.:" + studentId);
 					return gson.toJson(responseMap);
 				}
 			} catch (IOException e) {
@@ -113,18 +109,8 @@ public class AccountController {
 			
 	}
 		Map<String, Object> responseMap=new LinkedHashMap<String, Object>();
-		responseMap.put("message","your data has been posted with the following information");
-		responseMap.put("studentName", studentName);
-		responseMap.put("studentId", studentId);
-		responseMap.put("activeAccount", activeAccount);
-		responseMap.put("batch", batch);
-		responseMap.put("department", department);
-		responseMap.put("rfid", rfid);
-		responseMap.put("bytes", bytes);
-		responseMap.put("frontImageContentType", file.getContentType());
-		responseMap.put("sex", sex);
-		responseMap.put("vehicleType", vehicleType);
-		responseMap.put("vehicleNumber", vehicleNumber);
+		responseMap.put("message","Account added successfully");
+		
 		if(!file.isEmpty()){
 			responseMap.put("fileUploadStatus", "uploaded");
 		}

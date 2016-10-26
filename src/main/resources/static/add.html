@@ -83,10 +83,196 @@
 						</div>
 					</div>
 					<div class="panel-body">
-					<img src="images/parking design.png" style="width:100%"/>
+					<form id="addform" class="form-horizontal"  action="account/" enctype="multipart/form-data" method="POST">
+						<fieldset>
+
+						<!-- Form Name -->
+						<legend>Add Account</legend>
+
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpStudentName">Student Name</label>  
+						  <div class="col-md-4">
+						  <input id="inpStudentName" name="inpStudentName" type="text" placeholder="Name" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+
+						<!-- File Button --> 
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpFileToUpload">Image</label>
+						  <div class="col-md-4">
+						    <input id="inpFileToUpload" name="inpFileToUpload" class="input-file" type="file">
+						  </div>
+						</div>
+
+						<!-- Select Basic -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpDepartment">Department</label>
+						  <div class="col-md-4">
+						    <select id="inpDepartment" name="inpDepartment" class="form-control">
+						      <option value="AR">Architecture And Planning</option>
+						      <option value="AU">Automotive Engineering</option>
+						      <option value="CT">Computer Sc. And Info.Tech.</option>
+						      <option value="BO">Bio - Medical Engineering</option>
+						      <option value="CE">Civil Engineering</option>
+						      <option value="CH">Chemical Engineering</option>
+						      <option value="CS">Computer And Info. System Engineering</option>
+						      <option value="AU">Automotive Engineering</option>
+						      <option value="EE">Electrical Engineering</option>
+						      <option value="FO">Food Engineering</option>
+						      <option value="IM">Industrial And Manufacturing Engineering</option>
+						      <option value="ME">Mechanical Engineering</option>
+						      <option value="MM">Material Engineering</option>
+						      <option value="MY">Metallurgical Engineering</option>
+						      <option value="PE">Petroleum Engineering</option>
+						      <option value="PP">Polymer And Petrochemical Engineering</option>
+						      <option value="SE">Software Engineering</option>
+						      <option value="EL">Electronic Engineering</option>
+						      <option value="TC">Telecommunications Engg.</option>
+						      <option value="TE">Textile Engineering</option>
+						      <option value="UE">Urban Engineering</option>
+						      <option value="CF">Computational Finance</option>
+						      <option value="IC">Industrial Chemistry</option>
+						      <option value="AP">Applied Physics</option>
+						      <option value="MG">Management Science</option>
+						      <option value="TS">Textile Science</option>
+						      <option value="DS">Development Studies</option>
+						    </select>
+						  </div>
+						</div>
+						
+						
+						<!-- Select Basic -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpBatch1">Batch</label>
+						  <div class="col-md-4">
+						    <select id="inpBatch1" name="inpBatch1" class="form-control">
+						      
+							  <option value="2012-13">2012-13</option>
+							  <option value="2013-14">2013-14</option>
+							  <option value="2014-15">2014-15</option>
+							  <option value="2015-16">2015-16</option>
+							  <option value="2016-17">2016-17</option>
+							  <option value="2017-18">2017-18</option>
+							  <option value="2018-19">2018-19</option>
+							  <option value="2019-20">2019-20</option>
+							  <option value="2020-21">2020-21</option>
+							  <option value="2021-22">2021-22</option>
+							  <option value="2022-23">2022-23</option>
+							  <option value="2023-24">2023-24</option>
+							  <option value="2024-25">2024-25</option>
+							  <option value="2025-26">2025-26</option>
+						    </select>
+						  </div>
+						</div>
+						
+						
+						<!-- Select Basic -->
+						<div class="form-group" style="display:none">
+						  <label class="col-md-4 control-label" for="inpActiveAccount">Account status</label>
+						  <div class="col-md-4">
+						    <select id="inpActiveAccount" name="inpActiveAccount" class="form-control">
+								  <option value="active">Active</option>
+								  <option value="suspended">Suspended</option>
+						    </select>
+						  </div>
+						</div>	
+						
+						<!-- Select Basic -->
+						<div class="form-group" style="display:none">
+						  <label class="col-md-4 control-label" for="inpAccountFor">Account for</label>
+						  <div class="col-md-4">
+						    <select id="inpAccountFor" name="inpAccountFor" class="form-control">		  
+							  <option value="student">Student</option>
+							  <option value="employee">Employee</option>
+						    </select>
+						  </div>
+						</div>	
+						<!-- Select Basic -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpSex">Sex</label>
+						  <div class="col-md-4">
+						    <select id="inpSex" name="inpSex" class="form-control">
+								  <option value="male">Male</option>
+								  <option value="female">Female</option>
+						    </select>
+						  </div>
+						</div>
+						
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpStudentId">Enrollment No.</label>  
+						  <div class="col-md-4">
+						  <input id="inpStudentId" name="inpStudentId" type="text" placeholder="e.g NED/xxxx/12-13" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpCnicNo">CNIC</label>  
+						  <div class="col-md-4">
+						  <input id="inpCnicNo" name="inpCnicNo" type="text" placeholder="e.g 422xx-xxxxxxx-x" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpRollNumber">Roll No.</label>  
+						  <div class="col-md-4">
+						  <input id="inpRollNumber" name="inpRollNumber" type="text" placeholder="e.g CS-090" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpRfID_user">RFID Tag</label>  
+						  <div class="col-md-4">
+						  <input id="inpRfID_user" name="inpRfID_user" type="text" placeholder="e.g. 120,120,120,120" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpVehicleNumber">Vehicle Number plate</label>  
+						  <div class="col-md-4">
+						  <input id="inpVehicleNumber" name="inpVehicleNumber" type="text" placeholder="e.g. ANN159" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+
+						<!-- Select Basic -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="inpVehicleType">Vehicle type</label>
+						  <div class="col-md-4">
+						    <select id="inpVehicleType" name="inpVehicleType" class="form-control">
+						      <option value="bike">2 wheel</option>
+						      <option value="car">4 wheel</option>
+						    </select>
+						  </div>
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="submit"></label>
+						  <div class="col-md-4">
+						    <button id="submit" type="submit" name="submit" class="btn btn-primary">Submit</button>
+						  </div>
+						</div>
+						<label style="text-align:center;color:red;font-size:15px" id="responselabel" class="col-md-12 control-label"></label>
+
+						</fieldset>
+						</form>
 					</div>
 				</div>
-					
+					<div class="row">
+						<div style="visibility:hidden"><br><br></div>
+					</div>
 				</div>
 		  			
 		  			
