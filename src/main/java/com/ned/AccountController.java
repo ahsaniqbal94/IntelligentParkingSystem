@@ -328,18 +328,13 @@ public class AccountController {
 			Query query=new Query();
 			query.addCriteria(Criteria.where("studentId").is( studentId));
 			query.with(new Sort(Sort.Direction.ASC,"studentName"));
-			query.fields().include("studentName");
-			query.fields().include("department");
-			query.fields().include("rollNumber");
-			query.fields().include("batch");
-			query.fields().include("studentId");
+
 			
-			List<Account> allAccounts=mongoTemplate.find(query, Account.class,"account");
+			Account account=mongoTemplate.findOne(query, Account.class,"account");
 
 			Map<String, Object> response= new LinkedHashMap<String, Object>();
 			
-			response.put("TotalAccounts", allAccounts.size());
-			response.put("Accounts", allAccounts);
+			response.put("Account", account);
 			return response;
 		}
 		

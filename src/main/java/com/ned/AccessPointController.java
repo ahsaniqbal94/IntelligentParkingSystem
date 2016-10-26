@@ -53,7 +53,7 @@ public class AccessPointController {
 				// replace zero by one
 				
 				for(int i=0; i<accessPoints.size();i++){
-					myString=myString+accessPoints.get(i).getIpAddress()+ " and category is " +accessPoints.get(i).getCategory() + "<br>";
+					myString=myString+accessPoints.get(i).getIpAddress() + "<br>";
 				}
 				
 				responseMap.put("stringAccounts",myString);

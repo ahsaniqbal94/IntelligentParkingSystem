@@ -11,8 +11,6 @@ public class AccessPoint {
 	@Indexed(unique=true)
 	private String ipAddress;
 	
-	@NotNull
-	private String category;
 	
 
 	@Id
@@ -26,13 +24,7 @@ public class AccessPoint {
 		this.ipAddress = ipAddress;
 	}
 
-	public String getCategory() {
-		return category;
-	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
 	public String getId() {
 		return id;
@@ -45,22 +37,14 @@ public class AccessPoint {
 	public AccessPoint(String ipAddress, String category) {
 		super();
 		this.ipAddress = ipAddress;
-		this.category = category;
 	}
 
 	
 	
-	@Override
-	public String toString() {
-		return "AccessPoint [ipAddress=" + ipAddress + ", category=" + category + ", id=" + id + "]";
-	}
 
-	public String toStringNoId() {
-		return "AccessPoint [ipAddress=" + ipAddress + ", category=" + category + "]";
-	}
 	
 	public String toStringWithBr() {
-		return "ipAddress=" + ipAddress + ", category=" + category + "<br>";
+		return "ipAddress=" + ipAddress + "<br>";
 	}
 	
 }

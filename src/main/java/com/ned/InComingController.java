@@ -101,9 +101,10 @@ public class InComingController  {
     					
     					System.out.println("null returned");
     					Map<String, Object> myException=new LinkedHashMap<String, Object>();
-    					incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),myCreationDate,module);
+    					incomingVehicle=new InComing(rfid,bytes,status,myCreationDate,module);
     					
     					mongoTemplate.save(incomingVehicle, "Intruder");
+    					myException.put("gate", "close");
     					myException.put("message", "found no such account in the database: INTRUDER");
     					return myException;
     					
@@ -115,35 +116,39 @@ public class InComingController  {
     					if(checkAccount.getActiveAccount().equals("suspended")){
     						// if account is suspended
     						
-    						incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),timestamp, module);
+    						incomingVehicle=new InComing(rfid,bytes,status,timestamp, module);
 							mongoTemplate.save(incomingVehicle, "Intruder");
 							
 							Map<String, Object> returnFromIncomingData=new LinkedHashMap<String, Object>();
+	    					returnFromIncomingData.put("gate", "close");
+
 							returnFromIncomingData.put("message", "Account is suspended: INTRUDER");
 							return	returnFromIncomingData;
     						
     					} 
     					
-    				    if(accessingPoint.getCategory().equals("incoming")){
+    				    if(status.equals("incoming")){
     						
     								System.out.println("User : " + checkAccount.getStudentName().toString()
-    										+	" is " + accessingPoint.getCategory().toString() + " module : " +
+    										+	" is " + status.toString() + " module : " +
     										module);
     									System.out.println("Account exist,,,,,,\nuploading file");
 
     									newFileName=myCreationDate.replace(":", "");
     									newFileName=newFileName.replace("", "");
-    									newFileName=newFileName.replace("/", "");
+    									newFileName=newFileName.replace("/","");
     									
     									
-//    									incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),myCreationDate,module);
-//    									mongoTemplate.save(incomingVehicle, accessingPoint.getCategory() + "Vehicle");
+//    									incomingVehicle=new InComing(rfid,bytes,status,myCreationDate,module);
+//    									mongoTemplate.save(incomingVehicle, status + "Vehicle");
     						
-    									incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),timestamp,module);
-    									mongoTemplate.save(incomingVehicle, accessingPoint.getCategory() + "Vehicle");
+    									incomingVehicle=new InComing(rfid,bytes,status,timestamp,module);
+    									mongoTemplate.save(incomingVehicle, status + "Vehicle");
     						
     									
     									Map<String, Object> returnFromIncomingData=new LinkedHashMap<String, Object>();
+    			    					returnFromIncomingData.put("gate", "open");
+
     									returnFromIncomingData.put("message", "file uploaded");
     									returnFromIncomingData.put("user", checkAccount.getStudentName());
     									returnFromIncomingData.put("status", "Incoming vehicle");
@@ -153,7 +158,7 @@ public class InComingController  {
     									
     									
     						// Now see if the account is outgoing				
-    						}else if(accessingPoint.getCategory().equals("outgoing")){ 
+    						}else if(status.equals("outgoing")){ 
     							
     							//now take out the last entry of the vehicle which would have prev
     							// entered the parking lot
@@ -185,31 +190,14 @@ public class InComingController  {
     								System.out.println("myCreationDate : " + myCreationDate);
     								
     								
-    								//TODO adjust date from substring here
-    								int myCreationDateDay = 0;
-    								int incomingLatestVehicleDay = 0;
     								
-    								try{
-    								System.out.println(myCreationDate);
-    								//8,10
-    								myCreationDateDay=Integer.parseInt(myCreationDate.substring(7, 10));
-    								System.out.println(myCreationDateDay);
     								
-    								System.out.println(incomingLatestVehicle.get(0).getTimeStamp());
-    								incomingLatestVehicleDay=Integer.parseInt(incomingLatestVehicle.get(0).getTimeStamp().substring(8, 10));
-    								System.out.println(incomingLatestVehicleDay);
-    								}catch(NumberFormatException e){
-    									System.out.println(e);
-    								}
     								
-    								// if day isn't same, alert a suspicion
-    								if(myCreationDateDay!=incomingLatestVehicleDay){
-    									System.out.println("This vehicle didn't enter today : SUSPICION");
-    								}
+    								
     								
     								
     								System.out.println("User : " + checkAccount.getStudentName().toString()
-    	    								+	" is " + accessingPoint.getCategory().toString() + " module : " +
+    	    								+	" is " + status.toString() + " module : " +
     										module);
     								
     	    							System.out.println("Account exist,,,,,,\nuploading file");
@@ -219,10 +207,12 @@ public class InComingController  {
     	    							newFileName=newFileName.replace("/", "");
     	    							
     	    							
-    	    							incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),timestamp, module);
-    	    							mongoTemplate.save(incomingVehicle, accessingPoint.getCategory() + "Vehicle");
+    	    							incomingVehicle=new InComing(rfid,bytes,status,timestamp, module);
+    	    							mongoTemplate.save(incomingVehicle, status + "Vehicle");
     	    							
     	    							Map<String, Object> returnFromIncomingData=new LinkedHashMap<String, Object>();
+    	    	    					returnFromIncomingData.put("gate", "open");
+
     	    							returnFromIncomingData.put("message", "file uploaded");
     	    							returnFromIncomingData.put("user", checkAccount.getStudentName());
     	    							returnFromIncomingData.put("status", "Outgoing vehicle");
@@ -234,18 +224,22 @@ public class InComingController  {
     							}else{	
     								
     								// when the vehicle never came in
-    								incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),timestamp, module);
+    								incomingVehicle=new InComing(rfid,bytes,status,timestamp, module);
     								mongoTemplate.save(incomingVehicle, "Intruder");
     								
 	    							Map<String, Object> returnFromIncomingData=new LinkedHashMap<String, Object>();
+	    	    					returnFromIncomingData.put("gate", "close");
+
 	    							returnFromIncomingData.put("message", "it never came in, suspicion");
 	    							return	returnFromIncomingData;
     							}
 	
     							}else{
     								Map<String, Object> myException=new LinkedHashMap<String, Object>();
-    								incomingVehicle=new InComing(rfid,bytes,accessingPoint.getCategory(),timestamp, module);
+    								incomingVehicle=new InComing(rfid,bytes,status,timestamp, module);
     								mongoTemplate.save(incomingVehicle, "Intruder");
+	    	    					myException.put("gate", "close");
+
     								myException.put("message", "No incoming or outgoing, account"
     										+ " exists : SUSPICION");
     								return myException;
@@ -258,6 +252,8 @@ public class InComingController  {
     			}catch(EmptyResultDataAccessException e){
 
     				Map<String, Object> myException=new LinkedHashMap<String, Object>();
+					myException.put("gate", "close");
+
     				myException.put("message", "found nothing in the database: INTRUDER");
     				return myException;
 	
@@ -266,6 +262,8 @@ public class InComingController  {
 
     		} catch (IOException e) {
     			Map<String, Object> responseMap=new LinkedHashMap<String, Object>();
+				responseMap.put("gate", "close");
+
     			responseMap.put("message","You failed to upload " + newFileName + " => " + e.getMessage());
     			return responseMap;
     		}
@@ -273,6 +271,8 @@ public class InComingController  {
         }else{
         	logger.error("Ip trying to access is Intruder, the IP is : " + ipAddress);
         	Map<String, Object> responseMap=new LinkedHashMap<String, Object>();
+			responseMap.put("gate", "close");
+
 			responseMap.put("message","Ip trying to access is Intruder, the IP is : " + ipAddress);
 			return responseMap;
         }
@@ -280,20 +280,7 @@ public class InComingController  {
 		
 	}
 	
-	@RequestMapping(value="/getallincoming",method=RequestMethod.GET)
-	@PreAuthorize("hasRole('ROLE_USER')")
-	public Map<String, Object> getAllAccounts(){
-
-		logger.info("get all accounts");
-		
-		
-		Query query=new Query();
-		List<InComing> allAccounts=mongoTemplate.find(query, InComing.class,"incomingVehicle");
-		Map<String, Object> response= new LinkedHashMap<String, Object>();
-		response.put("Total Accounts", allAccounts.size());
-		response.put("Accounts", allAccounts);
-		return response;
-	}
+	
 
 	
 	@RequestMapping(value="/fetchallinoutrecordsexcludingimages", method=RequestMethod.GET)
@@ -304,9 +291,12 @@ public class InComingController  {
 		
 		Query inRecordQuery=new Query();
 		inRecordQuery.addCriteria(Criteria.where("rfid").is(rfid));
+		inRecordQuery.with(new Sort(Sort.Direction.DESC,"_id"));
 		inRecordQuery.fields().exclude("frontImageBytes");
+		inRecordQuery.fields().exclude("module");
 		inRecordQuery.fields().exclude("status");
 		inRecordQuery.fields().exclude("rfid");
+		
 		
 		List<InComing> allIncomingAccounts=mongoTemplate.find(inRecordQuery, InComing.class,"incomingVehicle");
 		List<InComing> allOutgoingAccounts=mongoTemplate.find(inRecordQuery, InComing.class,"outgoingVehicle");
@@ -325,7 +315,7 @@ public class InComingController  {
 	@RequestMapping(value="/fetchinoutimages", method=RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public @ResponseBody Map<String, Object> fetchInOutImages(@RequestParam("inout") String inOut,
-			@RequestParam("datetime") String dateTime){
+			@RequestParam("datetime") String dateTime,@RequestParam("rfid") String rfid ){
 	
 		logger.info("Fetch In Out Images Executed");
 		
@@ -334,10 +324,10 @@ public class InComingController  {
 		
 		if(inOut.equals("in")){
 			Query inRecordQuery1=new Query();
-			inRecordQuery1.addCriteria(Criteria.where("timeStamp").is(dateTime));
+			inRecordQuery1.addCriteria(Criteria.where("timeStamp").is(dateTime).and("rfid").is(rfid));
 		
 			Query inRecordQuery2=new Query();
-			inRecordQuery2.addCriteria(Criteria.where("timeStamp").is(dateTime));
+			inRecordQuery2.addCriteria(Criteria.where("timeStamp").is(dateTime).and("rfid").is(rfid));
 			
 			inRecordQuery1.addCriteria(Criteria.where("module").is("reader"));
 			List<InComing> allIncomingAccountsReaderModule=mongoTemplate.find(inRecordQuery1, InComing.class,"incomingVehicle");
@@ -351,10 +341,10 @@ public class InComingController  {
 			
 		}else if(inOut.equals("out")){
 			Query inRecordQuery1=new Query();
-			inRecordQuery1.addCriteria(Criteria.where("timeStamp").is(dateTime));
+			inRecordQuery1.addCriteria(Criteria.where("timeStamp").is(dateTime).and("rfid").is(rfid));
 
 			Query inRecordQuery2=new Query();
-			inRecordQuery2.addCriteria(Criteria.where("timeStamp").is(dateTime));
+			inRecordQuery2.addCriteria(Criteria.where("timeStamp").is(dateTime).and("rfid").is(rfid));
 			
 			
 			inRecordQuery1.addCriteria(Criteria.where("module").is("reader"));
