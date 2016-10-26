@@ -1,0 +1,822 @@
+<html >
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<title>Account Information Page</title>
+	<link href="/styleit.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<script src="/jquery-2.2.0.min.js"></script>
+<body>
+<h1>ACCOUNTS PAGE</h1><a href='/query.html'>Go To Query Page</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<button id='logoutButton'>logout</button><br><br>
+<div id="allAccounts">
+<div id="studentAccount"><h2> CREATE ACCOUNT :</h2>
+
+<form action="/account" enctype="multipart/form-data" method="POST">File To Upload: <input id="inpFileToUpload" name="file" type="file" /><br><br />
+
+Account For : <select id="inpAccountFor">
+  <option value="student">Student</option>
+  <option value="employee">Employee</option>
+</select>
+<br><br>
+
+Name: <input id="inpStudentName" name="studentName" type="text" /><div id='studentNameValidator'></div><br />
+
+Active Account: <select id="inpActiveAccount">
+  <option value="active">Active</option>
+  <option value="suspended">Suspended</option>
+</select>
+<div id='activeAccountValidator'></div><br>
+
+Sex: <select id="inpSex">
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+</select>
+<br><br>
+Vehicle Type: <select id="inpVehicleType">
+  <option value="2 wheel">2 wheel</option>
+  <option value="4 wheel">4 wheel</option>
+</select><br><br>
+
+Vehicle Number: <input id="inpVehicleNumber" name="rfID_user" type="text" /><div id='rfidValidator'></div><br>
+
+Batch: <select id="inpBatch1">
+  <option value="1990">1990</option>
+  <option value="1991">1991</option>
+  <option value="1992">1992</option>
+  <option value="1993">1993</option>
+  <option value="1994">1994</option>
+  <option value="1995">1995</option>
+  <option value="1996">1996</option>
+  <option value="1997">1997</option>
+  <option value="1998">1998</option>
+  <option value="1999">1999</option>
+  <option value="2000">2000</option>
+  <option value="2001">2001</option>
+  <option value="2002">2002</option>
+  <option value="2003">2003</option>
+  <option value="2004">2004</option>
+  <option value="2005">2005</option>
+  <option value="2006">2006</option>
+  <option value="2007">2007</option>
+  <option value="2008">2008</option>
+  <option value="2009">2009</option>
+  <option value="2010">2010</option>
+  <option value="2011">2011</option>
+  <option value="2012">2012</option>
+  <option value="2013">2013</option>
+  <option value="2014">2014</option>
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
+  <option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  <option value="2023">2023</option>
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+  <option value="2027">2027</option>
+  <option value="2028">2028</option>
+  <option value="2029">2029</option>
+</select>
+
+<select id="inpBatch2" >
+  <option value="00">00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+</select>
+<div id='batchValidator'></div><br />
+
+Department: 
+<select id="inpDepartment">
+  <option value="AR">Architecture And Planning</option>
+  <option value="AU">Automotive Engineering</option>
+  <option value="CT">Computer Sc. And Info. Tech.</option>
+  <option value="BO">Bio-Medical Engineering</option>
+  <option value="CE">Civil Engineering</option>
+  <option value="CH">Chemical Engineering</option>
+  <option value="CS">Computer And Info. System Engineering</option>
+  <option value="AU">Automotive Engineering</option>
+  <option value="EE">Electrical Engineering</option>
+  <option value="FO">Food Engineering</option>
+  <option value="IM">Industrial And Manufacturing Engineering</option>
+  <option value="ME">Mechanical Engineering</option>
+  
+  <option value="MM">Material Engineering</option>
+  <option value="MY">Metallurgical Engineering</option>
+  <option value="PE">Petroleum Engineering</option>
+  <option value="PP">Polymer And Petrochemical Engineering</option>
+  <option value="SE">Software Engineering</option>
+  <option value="EL">Electronic Engineering</option>
+  <option value="TC">Telecommunications Engg.</option>
+  <option value="TE">Textile Engineering</option>
+  <option value="UE">Urban Engineering</option>
+  <option value="CF">Computational Finance</option>
+  <option value="IC">Industrial Chemistry</option>
+  <option value="AP">Applied Physics</option>
+  <option value="MG">Management Science</option>
+  <option value="TS">Textile Science</option>
+  <option value="DS">Development Studies</option>
+</select>
+<div id='departmentValidator'></div><br />
+
+Rfid Tag: <input id="inpRfID_user" name="rfID_user" type="text" /><div id='rfidValidator'></div><br />
+Enrollment # (Student) | Employee ID (Employee) : <input id="inpStudentId" name="studentId" type="text" /><div id='studentId'></div></form>
+CNIC # : <input id='inpCnicNo'><br><br>
+Roll # : <input id='inpRollNumber'>
+
+</div>
+
+<div id="staffAccount"></div>
+
+<p><button id="createButton">Create Button</button></p>
+</div>
+
+
+<div id="updatedAccount" style="background-color: rgb(128, 128, 128);"></div>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		
+		
+		$("#createButton").click(function(){
+			
+			
+			var cnicNo = $("#inpCnicNo").val().trim();
+			var accountType = $("#inpAccountFor").val().trim();
+			var rollNumber=$("#inpRollNumber").val().trim();
+			var studentNameValue=$("#inpStudentName").val().trim();
+			var studentIdValue=$("#inpStudentId").val().trim();
+			var activeAccountValue=$("#inpActiveAccount").val().trim();
+			var departmentValue=$("#inpDepartment").val().trim();
+			var batchValue=$("#inpBatch1").val().trim() + "-" + $("#inpBatch2").val().trim();
+			var rfID_user=$("#inpRfID_user").val().trim();
+			var fileToUploadValue=$("#inpFileToUpload").prop("files")[0];
+			var sex=$("#inpSex").val().trim();
+			var vehicleNumber=$("#inpVehicleNumber").val().trim();
+			var vehicleType=$("#inpVehicleType").val().trim();
+			
+			formdata= new FormData();
+
+			
+			if(accountType=='employee'){
+				
+				formdata.append("studentName",studentNameValue);
+				formdata.append("studentId",studentIdValue);
+				formdata.append("activeAccount",activeAccountValue);
+				formdata.append("department","no");
+				formdata.append("batch","no");
+				formdata.append("rfid",rfID_user);
+				formdata.append("file", fileToUploadValue);
+				formdata.append("sex",sex);
+				formdata.append("vehicleNumber",vehicleNumber);
+				formdata.append("vehicleType", vehicleType);
+				formdata.append("cnicNo",cnicNo);
+				formdata.append("accountType", accountType);
+				formdata.append("rollNumber", "no");
+			
+			} else if(accountType=='student'){
+			
+				formdata.append("studentName",studentNameValue);
+				formdata.append("studentId",studentIdValue);
+				formdata.append("activeAccount",activeAccountValue);
+				formdata.append("department",departmentValue);
+				formdata.append("batch",batchValue);
+				formdata.append("rfid",rfID_user);
+				formdata.append("file", fileToUploadValue);
+				formdata.append("sex",sex);
+				formdata.append("vehicleNumber",vehicleNumber);
+				formdata.append("vehicleType", vehicleType);
+				formdata.append("cnicNo",cnicNo);
+				formdata.append("accountType", accountType);
+				formdata.append("rollNumber", rollNumber);
+			
+			}
+			
+			
+
+			
+			
+			alert("sending POST ajax");
+			$.ajax({
+				  type: "POST",
+				  url: "/account",
+				  data: formdata,
+				  success: function (responseMap){
+					  alert("success");
+					  alert(responseMap.studentName);
+					  $("#updatedAccount").empty();
+					  
+					  
+					  var imageAppend="<img src='data:" + responseMap.frontImageContentType + ";base64," +  responseMap.bytes + "' height='200px' width='200px'style='float:right;' />";
+					  var message="Message : " + responseMap.message + "<br<br><br>";
+					  var studentName="Student Name : " + responseMap.studentName + "<br>";
+					  var studentId="Student ID : " + responseMap.studentId + "<br>";
+					  var department="Department : " + responseMap.department + "<br>";
+					  var batch="Batch : " + responseMap.batch + "<br><br><br>";
+					  var rfid="Rfid : " + responseMap.rfid + "<br>";
+					  var activeAccount="Active Account : " + responseMap.activeAccount + "<br>";
+					  var showImage="show the image" + "<br>";
+					  var sex="Sex : " + responseMap.sex + "<br>";
+					  var vehicleType="Vehicle Type : " + responseMap.vehicleType + "<br>";
+					  var vehicleNumber="Vehicle Number : " + responseMap.vehicleNumber + "<br>";
+					  var frontImageContentType="file content type : " + responseMap.frontImageContentType;
+						
+					  
+					  $("#updatedAccount").append(imageAppend);
+					  $("#updatedAccount").append(message);
+					  $("#updatedAccount").append(studentName);
+					  $("#updatedAccount").append(studentId);
+					  $("#updatedAccount").append(department);
+					  $("#updatedAccount").append(batch);
+					  $("#updatedAccount").append(activeAccount);
+					  $("#updatedAccount").append(rfid);
+					  $("#updatedAccount").append(sex);
+					  $("#updatedAccount").append(vehicleType);
+					  $("#updatedAccount").append(vehicleNumber);
+					  $("#updatedAccount").append(frontImageContentType);
+
+					  
+					  alert('uploading with this information, after clicking OK the image will disappear');
+					  $("#updatedAccount").empty();
+					},
+	              processData: false,
+	              contentType: false
+				});	
+		
+		});
+		
+		
+		
+		$("#btnEditAccount").click(function(){
+			
+			
+			var inpEditCnic=$("#inpEditCnic").val().trim();
+			var inpEditRollNumber=$("#inpEditRollNumber").val().trim();
+			var inpEditThrough=$("#inpEditThrough").val().trim();
+			var inpEditAccountId=$("#inpEditAccountId").val().trim();
+			var inpEditStudentName=$("#inpEditStudentName").val().trim();
+			var inpEditActiveAccount=$("#inpEditActiveAccount").val().trim();
+			var inpEditBatch=$("#inpEditBatch1").val().trim() + "-" + $("#inpEditBatch2").val().trim();
+			var inpEditSex=$("#inpEditSex").val().trim();
+			var inpEditFileToUpload=$("#inpEditFileToUpload").prop("files")[0];
+			var inpEditVehicleType=$("#inpEditVehicleType").val().trim();
+			var inpEditDepartment=$("#inpEditDepartment").val().trim();
+			var inpEditRfID_user=$("#inpEditRfID_user").val().trim();
+			var inpEditStudentId=$("#inpEditStudentId").val().trim();
+			var inpEditVehicleNumber=$("#inpEditVehicleNumber").val().trim();
+			
+			
+			
+			formdata= new FormData();
+			formdata.append("idType",inpEditThrough);
+			formdata.append("oldAccountId",inpEditAccountId);
+			formdata.append("studentName",inpEditStudentName);
+			formdata.append("activeAccount",inpEditActiveAccount);
+			formdata.append("batch",inpEditBatch);
+			formdata.append("sex",inpEditSex);
+			formdata.append("file", inpEditFileToUpload);
+			formdata.append("vehicleType",inpEditVehicleType);
+			formdata.append("department",inpEditDepartment);
+			formdata.append("rfid", inpEditRfID_user);
+			formdata.append("studentId", inpEditStudentId);
+			formdata.append("vehicleNumber", inpEditVehicleNumber);
+			formdata.append("accountId", "checking");
+			formdata.append("cnic", inpEditCnic);
+			formdata.append("rollNumber", inpEditRollNumber);
+			
+
+			alert(inpEditCnic);
+			
+			
+			alert("sending POST ajax");
+			$.ajax({
+				  type: "POST",
+				  url: "/editaccount/",
+				  data: formdata,
+				  success: function (responseMap){
+					  alert("success called");
+					  $("#updatedAccount").empty();
+					  var imageAppend="<img src='data:" + responseMap.account.frontImageContentType + ";base64," +  responseMap.account.bytes + "' height='200px' width='200px'style='float:right;' />";
+					  
+					  var message="Message : " + responseMap.message + "<br<br><br>";
+					  var studentName="Student Name : " + responseMap.account.studentName + "<br>";
+					  var studentId="Student ID : " + responseMap.account.studentId + "<br>";
+					  var department="Department : " + responseMap.account.department + "<br>";
+					  var batch="Batch : " + responseMap.account.batch + "<br><br><br>";
+					  var rfid="Rfid : " + responseMap.account.rfid + "<br>";
+					  var activeAccount="Active Account : " + responseMap.account.activeAccount + "<br>";
+					  var sex="Sex : " + responseMap.account.sex + "<br>";
+					  var vehicleType="Vehicle Type : " + responseMap.account.vehicleType + "<br>";
+					  var vehicleNumber="Vehicle Number : " + responseMap.account.vehicleNumber + "<br>";
+					  var frontImageContentType="file content type : " + responseMap.account.frontImageContentType;
+
+					  $("#editAccountInfoDiv").append(imageAppend);
+					  $("#editAccountInfoDiv").append(message);
+					  $("#editAccountInfoDiv").append(studentName);
+					  $("#editAccountInfoDiv").append(studentId);
+					  $("#editAccountInfoDiv").append(department);
+					  $("#editAccountInfoDiv").append(batch);
+					  $("#editAccountInfoDiv").append(activeAccount);
+					  $("#editAccountInfoDiv").append(rfid);
+					  $("#editAccountInfoDiv").append(sex);
+					  $("#editAccountInfoDiv").append(vehicleType);
+					  $("#editAccountInfoDiv").append(vehicleNumber);
+					  $("#editAccountInfoDiv").append(frontImageContentType);
+
+					  alert('Updated with this information, after clicking OK the image will disappear');
+					  $("#editAccountInfoDiv").empty();
+					},
+	              processData: false,
+	              contentType: false
+				});	
+
+			
+		});
+		
+		
+	});
+	
+	</script>
+
+<br />
+
+<div id='accountCodeCSSDiv'>
+<h2> ACCOUNT CODE: follow steps</h2>
+Find users with their student Id and batch and submit to get a code</p>
+
+<form action="/getaccountcode/" enctype="multipart/form-data" method="POST">studentID: <input id="studentIdCode" name="studentIdCode" type="text" /> batch: <input id="batchCode" name="batchCode" type="text" />&nbsp;</form>
+<button id="getAccountCodeButton">Get Account Code</button>
+</div>
+
+<br />
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		$("#getAccountCodeButton").click(function(){
+
+			alert("get account button clicked");
+			var studentIdValue=$("#studentIdCode").val();
+			var batchValue=$("#batchCode").val();
+			
+
+			alert(studentIdValue);
+			alert(batchValue);
+			
+			$.ajax({
+				  type: "GET",
+				  url: "/getaccountcode/",
+				  data: {
+					  "studentIdCode":studentIdValue,
+					  "batchCode":batchValue
+				  },
+				  success: function (res){
+					  alert("success");
+					  var newval="copy the value and use it to modify or delete the user : " + res + "<br><br>";
+					  alert(newval);
+					  $("#getAccountDiv").empty();
+					  $("#getAccountDiv").append(newval);					  
+
+				  }
+				  
+				});	
+		
+		});
+		
+		
+
+		
+		$("#accountToDeleteWithRfidButton").click(function(){
+					
+					var accountToDelete= $("#rfID_user").val();
+					alert(accountToDelete);
+					$.ajax({
+						  type		: "POST",
+						  url		: "/accountToDeleteWithRfid/",
+						  data		: {
+							  			accountToDelete : accountToDelete
+							  			},
+						  success	: function (res){
+							  $("#accountToDeleteWithRfidRes").empty();
+							  $("#accountToDeleteWithRfidRes").append(res.message);
+							  $("#accountToDeleteWithRfidRes").append("<br>");
+							  $("#accountToDeleteWithRfidRes").append(res.studentName);
+							  $("#accountToDeleteWithRfidRes").append("<br>");
+							  $("#accountToDeleteWithRfidRes").append(res.studentId);
+							  $("#accountToDeleteWithRfidRes").append("<br>");
+							  $("#accountToDeleteWithRfidRes").append(res.batch);
+							  $("#accountToDeleteWithRfidRes").append("<br>");
+							  $("#accountToDeleteWithRfidRes").append(res.department);
+							  
+							   
+						  }    
+						});
+				});
+	});
+	
+	</script>
+
+<div id="getAccountDiv">&nbsp;</div>
+
+
+<div id="user_deletion"><br />
+<br />
+
+<div id='deleteAccountCSSDiv'>
+<h2> DELETE ACCOUNT: Copy code here and delete the user</h2>
+Account To Delete: <input id="accountToDelete" type="text" />
+<button id="btn_accountToDelete">Delete Account</button> 
+</div>
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btn_accountToDelete").click(function(){
+				
+				var accountToDelete= $("#accountToDelete").val();
+				alert(accountToDelete);
+				$.ajax({
+					  type		: "POST",
+					  url		: "/accountToDelete/",
+					  data		: {
+						  			accountToDelete : accountToDelete
+						  			},
+					  success	: function (res){
+						  $("#accountToDeleteRes").empty();
+						     
+						  $("#accountToDeleteRes").append(res.message);
+						  $("#accountToDeleteRes").append("<br>");
+						  $("#accountToDeleteRes").append(res.studentName);
+						  $("#accountToDeleteRes").append("<br>");
+						  $("#accountToDeleteRes").append(res.studentId);
+						  $("#accountToDeleteRes").append("<br>");
+						  $("#accountToDeleteRes").append(res.batch);
+						  $("#accountToDeleteRes").append("<br>");
+						  $("#accountToDeleteRes").append(res.department);
+						  
+						   
+					  }    
+					});
+			});	
+			
+						
+			$("#accountToDeleteWithRfidButton").click(function(){
+						
+						var accountToDelete= $("#rfID_user").val();
+						alert(accountToDelete);
+						$.ajax({
+							  type		: "POST",
+							  url		: "/accountToDeleteWithRfid/",
+							  data		: {
+								  			accountToDelete : accountToDelete
+								  			},
+							  success	: function (res){
+								  $("#accountToDeleteWithRfidRes").empty();
+								  $("#accountToDeleteWithRfidRes").append(res.message);
+								  $("#accountToDeleteWithRfidRes").append("<br>");
+								  $("#accountToDeleteWithRfidRes").append(res.studentName);
+								  $("#accountToDeleteWithRfidRes").append("<br>");
+								  $("#accountToDeleteWithRfidRes").append(res.studentId);
+								  $("#accountToDeleteWithRfidRes").append("<br>");
+								  $("#accountToDeleteWithRfidRes").append(res.batch);
+								  $("#accountToDeleteWithRfidRes").append("<br>");
+								  $("#accountToDeleteWithRfidRes").append(res.department);
+								  
+								   
+							  }    
+							});
+					});
+			
+			
+			
+			$("#toggleAccountSuspension").click(function(){
+				
+				var rfid=$('#rfidSuspensionInp').val();
+	
+				$.ajax({
+					  type		: "GET",
+					  data		: {
+						  		rfid	: rfid
+					  },
+					  url		: "/togglesuspension",
+					  success	: function (res){
+						  $("#suspensionDiv").empty();
+						  $("#suspensionDiv").append(res.message);
+						}    
+					});
+			});
+			
+			
+			$("#logoutButton").click(function(){
+				
+				alert("Logout button clicked");
+				$.ajax({
+					  type		: "GET",
+					  url		: "/logout",
+					  success	: function (res){
+						  location.href = "/login.html"
+						}    
+					});
+			});
+			
+			
+			$("#getAllAccessPoint").click(function(){
+							
+							alert("Fetching Access Points");
+							$.ajax({
+								  type		: "GET",
+								  url		: "/getAllAccessPoints/",
+								  success	: function (res){
+										$("#allAccessPointsDiv").empty();
+										$("#allAccessPointsDiv").append(res.stringAccounts);
+									}    
+								});
+						});
+			
+			
+			
+				$("#btnAddAccessPoint").click(function(){
+					var accessPoint= $("#inpAddAccessPoint").val();
+					var accessPointCategory= $("#inpAddAccessPointCategory").val();
+					alert(accessPoint);
+						$.ajax({
+							  type		: "POST",
+							  url		: "/addAccessPoints",
+							  data		: {
+								  			accessPoint : accessPoint,
+								  			category	: accessPointCategory
+								  			},
+							  success	: function (res){
+								  $("#allAccessPointsMessageDiv").empty();
+								  $("#allAccessPointsMessageDiv").append(res.message);
+								 }    
+							});
+					});
+			
+				
+
+				$("#btnDeleteAccessPoint").click(function(){
+					var accessPoint= $("#inpDeleteAccessPoint").val();
+					alert(accessPoint);
+						$.ajax({
+							  type		: "POST",
+							  url		: "/deleteAccessPoints",
+							  data		: {
+								  			accessPoint : accessPoint
+								  			},
+							  success	: function (res){
+								  $("#allAccessPointsMessageDiv").empty();
+								  $("#allAccessPointsMessageDiv").append(res.message);
+								 }    
+							});
+					});
+			
+			
+			
+			
+			
+		});
+	</script></div>
+
+<br>
+<div id="accountToDeleteRes">
+
+You can alternatively use the rfid code to delete the user 
+<input id="rfID_user" type="text" />
+<button id="accountToDeleteWithRfidButton">Delete With Rfid</button>
+</div>
+<div id="accountToDeleteWithRfidRes"></div>
+<br><br>
+
+
+<div id='editAccountContainer'>
+	
+	<h2>EDIT ACCOUNT: </h2>
+	Enter the <b>RFID</b> or <b>ACCOUNT CODE</b> to edit the account, Keep the rfid same in form too : 
+	with : <select id="inpEditThrough">
+  	<option value="rfid">RFID</option>
+  	<option value="accountCode">Account Code</option>
+	</select>
+	<input id="inpEditAccountId" text="enter the id you want to edit"><br>
+	File To Upload: <input id="inpEditFileToUpload" name="file" type="file" /><br><br />
+
+Name: <input id="inpEditStudentName" name="studentName" type="text" /><div id='editStudentNameValidatorDiv'></div><br />
+
+Active Account: <select id="inpEditActiveAccount">
+  <option value="active">Active</option>
+  <option value="inActive">Inactive</option>
+  <option value="suspended">Suspended</option>
+</select>
+<div id='editActiveAccountValidatorDiv'></div><br>
+
+Sex: <select id="inpEditSex">
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+</select>
+<br><br>
+Vehicle Type: <select id="inpEditVehicleType">
+  <option value="2 wheel">2 wheel</option>
+  <option value="4 wheel">4 wheel</option>
+</select><br><br>
+
+Vehicle Number: <input id="inpEditVehicleNumber" name="rfID_user" type="text" /><div id='editRfidValidatorDiv'></div><br>
+
+Roll # : <input id='inpEditRollNumber'><br><br>
+
+Batch:<select id="inpEditBatch1">
+  <option value="1990">1990</option>
+  <option value="1991">1991</option>
+  <option value="1992">1992</option>
+  <option value="1993">1993</option>
+  <option value="1994">1994</option>
+  <option value="1995">1995</option>
+  <option value="1996">1996</option>
+  <option value="1997">1997</option>
+  <option value="1998">1998</option>
+  <option value="1999">1999</option>
+  <option value="2000">2000</option>
+  <option value="2001">2001</option>
+  <option value="2002">2002</option>
+  <option value="2003">2003</option>
+  <option value="2004">2004</option>
+  <option value="2005">2005</option>
+  <option value="2006">2006</option>
+  <option value="2007">2007</option>
+  <option value="2008">2008</option>
+  <option value="2009">2009</option>
+  <option value="2010">2010</option>
+  <option value="2011">2011</option>
+  <option value="2012">2012</option>
+  <option value="2013">2013</option>
+  <option value="2014">2014</option>
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
+  <option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  <option value="2023">2023</option>
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+  <option value="2027">2027</option>
+  <option value="2028">2028</option>
+  <option value="2029">2029</option>
+</select>
+<select id="inpEditBatch2" >
+  <option value="00">00</option>
+  <option value="01">01</option>
+  <option value="02">02</option>
+  <option value="03">03</option>
+  <option value="04">04</option>
+  <option value="05">05</option>
+  <option value="06">06</option>
+  <option value="07">07</option>
+  <option value="08">08</option>
+  <option value="09">09</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+  <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option>
+  <option value="26">26</option>
+  <option value="27">27</option>
+  <option value="28">28</option>
+  <option value="29">29</option>
+  <option value="30">30</option>
+  <option value="31">31</option>
+  <option value="32">32</option>
+  <option value="33">33</option>
+  <option value="34">34</option>
+  <option value="35">35</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+  <option value="38">38</option>
+  <option value="39">39</option>
+</select>
+<div id='editBatchValidatorDiv'></div><br />
+
+Department: 
+<select id="inpEditDepartment">
+  <option value="AR">Architecture And Planning</option>
+  <option value="AU">Automotive Engineering</option>
+  <option value="CT">Computer Sc. And Info. Tech.</option>
+  <option value="BO">Bio-Medical Engineering</option>
+  <option value="CE">Civil Engineering</option>
+  <option value="CH">Chemical Engineering</option>
+  <option value="CS">Computer And Info. System Engineering</option>
+  <option value="AU">Automotive Engineering</option>
+  <option value="EE">Electrical Engineering</option>
+  <option value="FO">Food Engineering</option>
+  <option value="IM">Industrial And Manufacturing Engineering</option>
+  <option value="ME">Mechanical Engineering</option>
+  <option value="MM">Material Engineering</option>
+  <option value="MY">Metallurgical Engineering</option>
+  <option value="PE">Petroleum Engineering</option>
+  <option value="PP">Polymer And Petrochemical Engineering</option>
+  <option value="SE">Software Engineering</option>
+  <option value="EL">Electronic Engineering</option>
+  <option value="TC">Telecommunications Engg.</option>
+  <option value="TE">Textile Engineering</option>
+  <option value="UE">Urban Engineering</option>
+  <option value="CF">Computational Finance</option>
+  <option value="IC">Industrial Chemistry</option>
+  <option value="AP">Applied Physics</option>
+  <option value="MG">Management Science</option>
+  <option value="TS">Textile Science</option>
+  <option value="DS">Development Studies</option>
+</select>
+<div id='editDepartmentValidatorDiv'></div><br />
+
+Rfid Tag : <input id="inpEditRfID_user" name="rfID_user" type="text" /><div id='editRfidValidatorDiv'></div>
+(must be the same as previous because rfid cannot be changed, it remains the same)<br><br>
+Enrolement # (Student) || Employee ID (Employee) : <input id="inpEditStudentId" name="studentId" type="text" /><div id='editStudentIdDiv'></div>
+<br>
+CNIC # <input id='inpEditCnic'><br><br>
+<button id="btnEditAccount">Commit Changes</button>
+</div>
+<div id="editAccountInfoDiv"></div>
+<br><br><br>
+
+<div id='suspendAccountCSSDiv'>
+<b>Suspend Account: Make account active or suspended, Enter the rfid: </b>
+<input type='text' id='rfidSuspensionInp'>
+<br><button id='toggleAccountSuspension'>Toggle Account Suspension</button>
+<br><div id='suspensionDiv'></div>
+</div>
+<br><br><br>
+
+<div id='allowedAccessPoint'>
+<h4>Access Point: List of allowed access points</h4>
+<div id='allAccessPointsDiv'></div>
+<button id='getAllAccessPoint'>Fetch All Access Points</button><br>
+Add Access Point    :    
+<input id='inpAddAccessPoint'>
+<select id="inpAddAccessPointCategory">
+  <option value="incoming">Incoming</option>
+  <option value="outgoing">Outgoing</option>
+</select>
+<button id='btnAddAccessPoint'>Add Access Point</button> <br>	
+Delete Access Point	: 
+<input id='inpDeleteAccessPoint'>
+<button id='btnDeleteAccessPoint'>Delete Access Point</button> <br>
+</div>
+<div id='allAccessPointsMessageDiv'></div>
+<br>
+<br><br><br><br><br><br><br><br><br><br>all rights reserved
+</body>
+</html>

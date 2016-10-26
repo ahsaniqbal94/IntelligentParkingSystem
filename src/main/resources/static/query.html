@@ -1,0 +1,271 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<title>Account Information Page</title>
+	<link href="/styleit.css" media="screen" rel="stylesheet" type="text/css" />
+	
+	<h1>QUERY PAGE</h1>
+</head>
+<script src="/jquery-2.2.0.min.js"></script>
+<body>
+
+<a href='/index.html'>Go To Accounts Page</a>
+<button id='logoutButton'>logout</button>
+<br><br>
+<label>StudentId: </label>&nbsp<input type='text' id='studentidINP'><br>
+<label>Batch: </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type='text' id='batchINP'><br>
+<label>Rfid: </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type='text' id='rfidINP'><br><br>
+<button id='runQueryBTN'>Run Query</button>
+<button id='checkStudentIdBTN'>Check Student ID</button>
+<br><br>
+<div id='fetchedUserInformationDIV'></div>
+<br>
+<button id='clearBTN'>clear everything</button>
+<button id='fetchInOutRecordBTN'>Fetch Records</button>
+<button id='particularRecordBTN'>Get Images Of This Record</button>
+
+<label id='recordDescriptionLBL'></label>
+<div id='incomingOutgoingRecordsDIV' style="overflow:scroll; height:400px;">
+	
+	<div id='incomingRecordsDIV' style="overflow:scroll; height:400px;"></div>
+	<div id='outgoingRecordsDIV' style="overflow:scroll; height:400px;"></div>
+	<div id='recordButtonsDIV' >
+	</div>
+	
+</div>
+<br>
+<div id='imagesDIV'>
+	<div id='frontImageDIV'></div>
+	<div id='centerImageDIV'></div>
+	<div id='backImageDIV'></div>
+</div>
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+copyright reserved
+
+</body>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("#clearBTN").prop('disabled', true);
+	$("#fetchInOutRecordBTN").prop('disabled', true);
+	$("#particularRecordBTN").prop('disabled', true);
+	
+	$("#runQueryBTN").click(function(){
+
+		studentIdQueryValue=$("#studentidINP").val();
+		batchQueryValue=$("#batchINP").val();
+		rfidQueryValue=$("#rfidINP").val();
+						
+		$.ajax({
+			  type: "GET",
+			  url: "/getaccountinformation/",
+			  data: {
+				  "studentid":studentIdQueryValue,
+				  "batch":batchQueryValue,
+				  "rfid":rfidQueryValue
+			  },
+			  success: function (res){
+		
+				  var imageAppend="<img src='data:" + res.Accounts[0].frontImageContentType + ";base64," +  res.Accounts[0].frontImageBytes + "' height='200px' width='200px'style='float:right;' />";
+				  		  
+				  $("#fetchedUserInformationDIV").empty();
+				  $("#fetchedUserInformationDIV").append(imageAppend);					
+				  $("#fetchedUserInformationDIV").append('<br>id : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].id);
+				  $("#fetchedUserInformationDIV").append('<br>creation date : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].creationDate);
+				  $("#fetchedUserInformationDIV").append('<br>student name : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].studentName);
+				  $("#fetchedUserInformationDIV").append('<br>student id : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].studentId);
+				  $("#fetchedUserInformationDIV").append('<br>active account : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].activeAccount);
+				  $("#fetchedUserInformationDIV").append('<br>department : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].department);
+				  $("#fetchedUserInformationDIV").append('<br>batch : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].batch);
+				  $("#fetchedUserInformationDIV").append('<br>rfid : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].rfid);
+				  $("#fetchedUserInformationDIV").append('<br>sex : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].sex);
+				  $("#fetchedUserInformationDIV").append('<br>vehicle type : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].vehicleType);
+				  $("#fetchedUserInformationDIV").append('<br>vehicle number : ');
+				  $("#fetchedUserInformationDIV").append(res.Accounts[0].vehicleNumber); 
+				  $("#fetchedUserInformationDIV").append('');  
+				
+				  $("#clearBTN").prop('disabled', false);
+				  $("#fetchInOutRecordBTN").prop('disabled', false);
+				  
+			  }
+			  
+			});	
+	});
+	
+	
+	$("#clearBTN").click(function(){
+		$("#fetchedUserInformationDIV").empty();
+		$("#incomingRecordsDIV").empty();
+		$("#outgoingRecordsDIV").empty();
+		$("#recordButtonsDIV").empty();
+		$("#recordDescriptionLBL").empty();
+		$("#frontImageDIV").empty();
+		$("#backImageDIV").empty();
+		
+		
+		$("#clearBTN").prop('disabled', true);
+		$("#fetchInOutRecordBTN").prop('disabled', true);
+		$("#particularRecordBTN").prop('disabled', true);
+	});
+	
+	
+	$("#checkStudentIdBTN").click(function(){
+		$("#fetchedUserInformationDIV").empty();
+		$("#incomingRecordsDIV").empty();
+		$("#outgoingRecordsDIV").empty();
+		$("#recordButtonsDIV").empty();
+		$("#recordDescriptionLBL").empty();
+		$("#frontImageDIV").empty();
+		$("#backImageDIV").empty();
+		
+		$("#clearBTN").prop('disabled', true);
+		$("#fetchInOutRecordBTN").prop('disabled', true);
+		$("#particularRecordBTN").prop('disabled', true);
+		
+		var studentIdValue= $("#studentidINP").val();
+		
+		$.ajax({
+			  type: "GET",
+			  url: "/checkaccountsagainststudentid/",
+			  data: {
+				  "studentId":studentIdValue
+			  },
+			  success: function (res){
+		  
+				  $("#fetchedUserInformationDIV").empty();
+				  $("#fetchedUserInformationDIV").append("batch : ");
+				  $("#fetchedUserInformationDIV").append(res.batch);					
+				  $("#fetchedUserInformationDIV").append('<br>');
+				  $("#fetchedUserInformationDIV").append("rfid : ");
+				  $("#fetchedUserInformationDIV").append(res.rfid);
+				 
+				  $("#clearBTN").prop('disabled', false);
+				  $("#fetchInOutRecordBTN").prop('disabled', false);
+				  
+			  }
+			  
+			});
+	});
+	
+
+	$("#fetchInOutRecordBTN").click(function(){
+
+		$("#incomingRecordsDIV").empty();
+		$("#outgoingRecordsDIV").empty();
+		$("#recordDescriptionLBL").empty();
+		$("#recordDescriptionLBL").append('<br><br>FETCHING RECORDS FOR ' + rfidQueryValue + '<br>');
+	
+		$.ajax({
+			  type: "GET",
+			  url: "/fetchallinoutrecordsexcludingimages/",
+			  data: {
+				  "rfid":rfidQueryValue
+			  },
+			  success: function (res){
+				  
+				  $("#incomingRecordsDIV").empty();
+				  $("#incomingRecordsDIV").append('<b><br>INCOMING RECORDS<br></b>');
+				  $("#outgoingRecordsDIV").empty();
+				  $("#outgoingRecordsDIV").append('<b><br>OUTGOING RECORDS<br></b>');
+							  
+				  for(var i=0; i<res.TotalIncomingAccounts; i++){
+					  var incromingRecords;
+					  incomingRecords=
+					  $("#incomingRecordsDIV").append('<br>' + res.IncomingAccounts[i].timeStamp + '<br>');
+				  }
+				  for(var i=0; i<res.TotalOutgoingAccounts; i++){
+					  $("#outgoingRecordsDIV").append('<br>' + res.OutgoingAccounts[i].timeStamp + '<br>');
+				  }
+				  
+			 $("#recordButtonsDIV").empty();
+			 $("#recordButtonsDIV").append("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
+			 $("#recordButtonsDIV").append("Select which record you want to view INCOMING or OUTGOING : ");
+			 $("#recordButtonsDIV").append("<select id='InOutSelect'><option value='in'>In Coming</option><option value='out'>Out Going</option></select><br>");
+			 $("#recordButtonsDIV").append("<br>");
+			 $("#recordButtonsDIV").append("Insert Date by copying : ");
+			 $("#recordButtonsDIV").append("<input id='particularRecordINP'><br>");
+			 $("#particularRecordBTN").prop('disabled', false);
+			  }
+			});	
+	});
+	
+	
+	
+	$("#particularRecordBTN").click(function(){
+		var inpDate = $('#particularRecordINP').val();
+		var inpChoice = $('#InOutSelect').val();
+		
+		$.ajax({
+			  type: "GET",
+			  url: "/fetchinoutimages/",
+			  data: {
+				  "datetime":inpDate,
+				  "inout":inpChoice
+			  },
+			  success: function (res){
+
+    	  			$("#imagesDIV").append('<br>');
+				  $("#frontImageDIV").empty();
+				  $("#frontImageDIV").append('<b><br>IMAGE 1<br></b>');
+				  $("#backImageDIV").empty();
+				  $("#backImageDIV").append('<b><br>IMAGE 2<br></b>');
+		  		  $("#frontImageDIV").append();
+					
+		  		  
+		  		  if(res.TotalAccountsReaderModule!=0){
+		  			 var frontImageAppend="<img src='data:" + "image/jpeg" + ";base64," +  res.AccountsReaderModule[0].frontImageBytes + "' height='200px' width='200px'style='float:right;' />";
+					$("#frontImageDIV").append(frontImageAppend);
+				  }
+		  		  
+		  		  if(res.TotalAccountsCameraModule!=0){
+		  			 var backImageAppend="<img src='data:" + "image/jpeg" + ";base64," +  res.AccountsCameraModule[0].frontImageBytes + "' height='200px' width='200px'style='float:right;' />";
+		  			$("#backImageDIV").append(backImageAppend);
+	    		  }
+		  		  
+		  		  
+				
+	  			$("#backImageDIV").append('<br><br><br>');
+			 
+			  }
+			  
+			});
+		
+	});
+	
+	
+	$("#logoutButton").click(function(){
+		
+		alert("Logout button clicked");
+		$.ajax({
+			  type		: "GET",
+			  url		: "/logout",
+			  success	: function (res){
+				  location.href = "/login.html"
+				}    
+			});
+	});
+	
+	
+});
+
+</script>
+</html>

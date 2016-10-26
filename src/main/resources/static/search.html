@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="css/styles.css" rel="stylesheet">
+
+  </head>
+<body>
+<div class="header">
+	     <div class="container">
+	        <div class="row">
+	           <div class="col-md-5">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <h1><a href="index.html">Admin Dashboard</a></h1>
+	              </div>
+	           </div>
+	           <div class="col-md-2">
+	              <div class="row">
+	                <div class="col-lg-12">
+	                  <div class="input-group form">
+	                  </div>
+	                </div>
+	              </div>
+	           </div>
+	           <div class="col-md-4">
+	              <div class="navbar navbar-inverse" role="banner">
+	                  <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+	                    <ul class="nav navbar-nav">
+	                      <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i>Welcome admin</i><b class="caret"></b></a>
+	                        <ul class="dropdown-menu animated fadeInUp">
+	                          <li><a id="logoutbutton1" onclick="logoutfunc()">Logout</a></li>
+	                        </ul>
+	                      </li>
+	                    </ul>
+	                  </nav>
+	              </div>
+	           </div>
+	        </div>
+	     </div>
+	</div>
+
+    <div class="page-content">
+    	<div class="row">
+		  <div class="col-md-2">
+		  	<div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li><a href="show.html"><i class="glyphicon glyphicon-stats"></i> Show Parking Usage</a></li>
+                    <li><a href="search.html"><i class="glyphicon glyphicon-list"></i> Search Users</a></li>
+                    <li><a href="add.html"><i class="glyphicon glyphicon-record"></i> Add User</a></li>
+                    <li><a href="edit.html""><i class="glyphicon glyphicon-pencil"></i> Edit User</a></li>
+                    <li><a href="Delete.html"><i class="glyphicon glyphicon-tasks"></i> Delete User</a></li>
+                    <li class="submenu">
+                         <a href="#">
+                            <i class="glyphicon glyphicon-list"></i> More
+                            <span class="caret pull-right"></span>
+                         </a>
+                         <!-- Sub menu -->
+                         <ul>
+                            <li><a href="#">Signup</a></li>
+                            <li><a id="logoutbutton" onclick="logoutfunc()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+             </div>
+		  </div>
+		  <div class="col-md-8">
+		  	<div class="row">
+				<div class="content-box-large">
+					<div class="panel-heading">
+						<div class="panel-title"><b>Intelligent Parking System</b></div>
+
+						<div class="panel-options">
+							<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+							<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+						</div>
+					</div>
+					<div class="panel-body">
+					<img src="images/parking design.png" style="width:100%"/>
+					</div>
+				</div>
+
+				</div>
+
+
+		  	</div>
+		  </div>
+		</div>
+	</div>
+
+
+
+
+    <footer class="footer navbar-fixed-bottom">
+         <div class="container">
+
+            <div class="copy text-center">
+               Copyright 2016 <a href='#'>Website</a>
+            </div>
+
+         </div>
+      </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

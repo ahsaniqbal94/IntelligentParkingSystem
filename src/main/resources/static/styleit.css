@@ -1,0 +1,76 @@
+
+	#intro { color: red; }
+	
+	
+	
+	#incomingOutgoingRecordsDIV {
+	display:inline;
+	}
+	
+	h1 {
+	color: black;
+    text-shadow: 2px 2px 4px GREY;
+    }
+    
+    #allAccounts{
+    background-color: #BCCED4;
+    border-style: solid;
+    border-color: #ff0000 #0000ff;
+    
+    
+    border-radius: 5px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    
+    }
+    
+    #accountCodeCSSDiv, #deleteAccountCSSDiv, #accountToDeleteRes, #editAccountContainer, #suspendAccountCSSDiv, #allowedAccessPoint{
+    background-color: #BCCED4;
+    border-style: solid;
+    border-color: #ff0000 #0000ff;
+    
+    border-radius: 5px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    }
+    
+    h2 {
+    color: black;
+    text-shadow: 2px 2px 2px #000000;
+    }
+    
+    
+    body{
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-color: #ff0000 #0000ff;
+    
+    border-radius: 5px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+    }
+    
+    h2 {
+    color: black;
+    text-shadow: 2px 2px 2px #000000;
+    }
+    
+    
+    
+	
+	#outgoingRecordsDIV { 	display:inline; float : left; width:300px; }
+	#incomingRecordsDIV { 	display:inline; float : left; width:300px; }
+	
+	#imagesDIV {
+	display:inline;
+	}
+	
+	#frontImageDIV { 	display:inline; float : left; width:500px; 
+    border-color: red; border-spacing: 3px; }
+	
+	#centerImageDIV { 	display:inline; float : left; width:30px; }
+	
+	#backImageDIV { 	display:inline; float : left; width:500px; 
+    border-color: red; border-spacing: 3px; }
+    
+    #logoutButton {float : right}
